@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
-using FinalProject_BackEnd.Models;
-using FinalProject_BackEnd.Models.DTOs;
-using FinalProject_BackEnd.Repositories;
-using FinalProject_BackEnd.Repositories.Interfaces;
+
 using Microsoft.AspNetCore.Mvc;
+using MediatR;
+using FinalProject.Application.Queries.GetUsersList;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,22 +12,19 @@ namespace FinalProject_BackEnd.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUsersRepository _usersRepository;
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public UsersController(IUsersRepository usersRepository, IMapper mapper)
+        public UsersController(IMediator mediator)
         {
-            _usersRepository = usersRepository;
-            _mapper = mapper;
+            _mediator = mediator;
         }
         // GET: api/<UsersController>
         [HttpGet]
-        public async Task<IEnumerable<UsersDTO>> Get()
+        public async Task<IActionResult> Get()
         {
 
-            var data = await _usersRepository.GetAll();
-
-            return _mapper.Map<List<UsersDTO>>(data);//Aquí se hace el mapeo
+            var response = await _mediator.Send(new GetUsersListQuery());
+            return Ok(response);
 
            // return data.ToList();
         }

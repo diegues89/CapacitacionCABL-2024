@@ -1,12 +1,12 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using FinalProject.Applications.Models.DTOs;
 using FinalProject.Domain.Entities;
 
 
-
-namespace FinalProject_BackEnd.Utils
+namespace FinalProject_BackEnd.Application.Profiles
 {
-    public class AutoMapperProfiles: Profile
+    public class AutoMapperProfiles : Profile
     {
         public AutoMapperProfiles()
         {

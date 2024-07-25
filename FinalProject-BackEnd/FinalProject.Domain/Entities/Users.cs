@@ -1,6 +1,6 @@
-﻿namespace FinalProject_BackEnd.Models.DTOs
+﻿namespace FinalProject.Domain.Entities
 {
-    public class UsersDTO
+    public class Users
     {
         public int id { get; set; }
         public string firstName { get; set; }

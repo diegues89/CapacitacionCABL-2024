@@ -1,6 +1,7 @@
-﻿using FinalProject_BackEnd.Models;
+﻿using FinalProject.Domain.Entities;
 
-namespace FinalProject_BackEnd.Repositories.Interfaces
+
+namespace FinalProject.Domain.Interfaces
 {
     public interface IUsersRepository
     {

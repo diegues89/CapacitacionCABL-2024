@@ -1,7 +1,9 @@
-﻿using FinalProject_BackEnd.Models;
+﻿
+
+using FinalProject.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace FinalProject_BackEnd.DataBase
+namespace FinalProject.Infraestructure.Database
 {
     public class DBContextFinalProject: DbContext
     {

@@ -1,9 +1,10 @@
-﻿using FinalProject_BackEnd.DataBase;
-using FinalProject_BackEnd.Models;
-using FinalProject_BackEnd.Repositories.Interfaces;
+﻿
+using FinalProject.Domain.Entities;
+using FinalProject.Domain.Interfaces;
+using FinalProject.Infraestructure.Database;
 using Microsoft.EntityFrameworkCore;
 
-namespace FinalProject_BackEnd.Repositories
+namespace FinalProject.Infrastructure.Repositories
 {
     public class UsersRepository: IUsersRepository
     {
@@ -19,10 +20,10 @@ namespace FinalProject_BackEnd.Repositories
             {
                 return await _dBContextFinalProject.Users.ToListAsync();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
 
-                throw e;
+                throw ex;
             }
 
 

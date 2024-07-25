@@ -1,6 +1,6 @@
-﻿namespace FinalProject_BackEnd.Models.DTOs
+﻿namespace FinalProject.Domain.Entities
 {
-    public class rolDTO
+    public class rol
     {
         public int rolId { get; set; }
         public string descripcionRol { get; set; }
