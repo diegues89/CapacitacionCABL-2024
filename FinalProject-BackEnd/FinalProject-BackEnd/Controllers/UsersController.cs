@@ -3,6 +3,9 @@
 using Microsoft.AspNetCore.Mvc;
 using MediatR;
 using FinalProject.Application.Queries.GetUsersList;
+using FinalProject.Application.Commands.CreateUser;
+using FinalProject.Application.Commands.UpdateUser;
+using FinalProject.Application.Commands.DeleteUser;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,36 +25,32 @@ namespace FinalProject_BackEnd.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-
             var response = await _mediator.Send(new GetUsersListQuery());
             return Ok(response);
-
-           // return data.ToList();
         }
 
-        // GET api/<UsersController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<UsersController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        [Route("")]
+        public async Task<IActionResult> Create([FromBody] CreateUserCommand command)
         {
+            await _mediator.Send(command);
+            return Ok();
         }
-
-        // PUT api/<UsersController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        [Route("{userId:int}")]
+        public async Task<IActionResult> Update([FromRoute] int userId, [FromBody] UpdateUserCommand command)
         {
+            command.id = userId;
+            await _mediator.Send(command);
+            return Ok();
         }
-
-        // DELETE api/<UsersController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        [Route("{userId:int}")]
+        public async Task<IActionResult> Delete([FromRoute] int userId)
         {
+            var command = new DeleteUserCommand { id = userId };
+            await _mediator.Send(command);
+            return Ok();
         }
     }
 }
