@@ -15,5 +15,7 @@ public static class Installer
         {
             configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
         });
+
+       
     }
 }

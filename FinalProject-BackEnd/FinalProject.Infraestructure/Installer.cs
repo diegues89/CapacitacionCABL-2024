@@ -22,6 +22,8 @@ namespace FinalProject.Infrastructure
             });
 
             services.AddScoped<IUsersRepository, UsersRepository>();
+            services.AddScoped<IProductsRepository, ProductsRepository>();
+            services.AddScoped<ISuppliersRepository, SuppliersRepository>();
         }
     }
 }
