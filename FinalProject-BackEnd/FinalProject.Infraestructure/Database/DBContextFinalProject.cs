@@ -15,6 +15,7 @@ namespace FinalProject.Infraestructure.Database
         public virtual DbSet<rol> rol { get; set; }
         public virtual DbSet<products> products { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
+        public virtual DbSet<productCategory> productCategory { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -41,6 +42,12 @@ namespace FinalProject.Infraestructure.Database
             {
 
                 entity.ToTable("Suppliers", "dbo");
+
+            });
+            modelBuilder.Entity<productCategory>(entity =>
+            {
+
+                entity.ToTable("productCategory", "dbo");
 
             });
         }

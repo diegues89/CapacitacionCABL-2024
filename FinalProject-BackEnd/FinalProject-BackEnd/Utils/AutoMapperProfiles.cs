@@ -14,6 +14,7 @@ namespace FinalProject_BackEnd.Utils
             CreateMap<Users, UsersDTO>().ReverseMap();
             CreateMap<products, productsDTO>().ReverseMap();
             CreateMap<Suppliers, SuppliersDTO>().ReverseMap();
+            CreateMap<productCategory, productCategoryDTO>().ReverseMap();
         }
     }
 }
