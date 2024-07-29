@@ -5,7 +5,7 @@ using FinalProject.Applications.Models.DTOs;
 using FinalProject.Domain.Entities;
 
 
-namespace FinalProject_BackEnd.Application.Profiles
+namespace FinalProject.Application.Profiles
 {
     public class AutoMapperProfiles : Profile
     {
@@ -13,6 +13,7 @@ namespace FinalProject_BackEnd.Application.Profiles
         {
             CreateMap<Users, UsersDTO>().ReverseMap();
             CreateMap<products, productsDTO>().ReverseMap();
+            //.ForMember(x => x.Category, opt => opt.MapFrom(x => x.productCategory.descriptionCategory));
             CreateMap<Suppliers, SuppliersDTO>().ReverseMap();
         }
     }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-using FinalProject_BackEnd.Application;
+
 using FinalProject.Application;
 using FinalProject.Infrastructure;
 

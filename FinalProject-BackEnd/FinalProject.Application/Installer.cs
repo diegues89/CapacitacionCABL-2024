@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using FluentValidation;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,11 @@ public static class Installer
     {
         services.AddMediatR(configuration =>
         {
-            configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());// Aca levanta todos los handler que hereden de IRequestHandler
         });
 
+        services.AddAutoMapper(Assembly.GetExecutingAssembly());// todos los que hereden de Profile
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
        
     }
 }
