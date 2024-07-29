@@ -21,6 +21,15 @@ builder.Configuration
     .AddJsonFile($"Config/connectionStrings.json", optional: true, reloadOnChange: true)
     .AddJsonFile($"Config/appsettings.json", optional: true, reloadOnChange: true);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(configure =>
+    {
+        configure.AllowAnyHeader();
+        configure.AllowAnyMethod();
+        configure.AllowAnyOrigin();
+    });
+});
 //builder.Services.AddDbContext<DBContextFinalProject>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionStringsFinalProject")));
 
 //builder.Services.AddScoped<IUsersRepository, UsersRepository>();
