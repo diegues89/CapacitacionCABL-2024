@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using FinalProject.Application;
 using FinalProject.Infrastructure;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 
@@ -21,6 +22,16 @@ builder.Configuration
     .AddJsonFile($"Config/connectionStrings.json", optional: true, reloadOnChange: true)
     .AddJsonFile($"Config/appsettings.json", optional: true, reloadOnChange: true);
 
+//builder.Services.AddCors(options =>
+//{
+//    options.AddPolicy(name: MyAllowSpecificOrigins,
+//                      policy =>
+//                      {
+//                          policy.WithOrigins("https://localhost:44376/api", "http://localhost:5173")
+//                                                    .AllowAnyHeader()
+//                                                    .AllowAnyMethod();
+//                      });
+//});
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(configure =>
@@ -51,5 +62,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();

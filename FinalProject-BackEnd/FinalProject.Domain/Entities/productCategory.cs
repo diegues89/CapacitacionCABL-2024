@@ -12,5 +12,7 @@ namespace FinalProject.Domain.Entities
         [Key]
         public int idCategory { get; set; }
         public string descriptionCategory { get; set; } = null!;
+
+       // public ICollection<products> products { get; set; }
     }
 }

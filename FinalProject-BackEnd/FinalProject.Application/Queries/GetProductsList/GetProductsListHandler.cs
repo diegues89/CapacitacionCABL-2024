@@ -29,10 +29,13 @@ namespace FinalProject.Application.Queries.GetProductsList
             var productsList = await _productsRepository.GetAll();
 
             response.ProductsList = productsList
+
             .OrderByDescending(productsList => productsList.idProduct)
             .Select(productsList => _mapper.Map<productsDTO>(productsList))
             .ToList();
             return response;
+
+
 
         }
     }

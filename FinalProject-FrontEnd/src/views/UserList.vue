@@ -8,9 +8,9 @@
       <th>Name</th>
       <th></th>
     </tr>
-    <tr>
-      <td>id</td>
-      <td>name</td>
+    <tr v-for="user in userList" :key="user.id">
+      <td>{{ user.id }}</td>
+      <td>{{ user.firstName }}</td>
       <td>
         <button>Update</button>
         <button>Delete</button>
@@ -19,7 +19,28 @@
   </table>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { UserDto } from '@/models/user-dto'
+import { useFetch } from '@vueuse/core'
+import { onMounted, ref } from 'vue'
+
+const userList = ref<UserDto[]>([])
+
+const getUserList = async () => {
+  const { data } = await useFetch('https://localhost:44376/api/Users')
+    .get()
+    .json<GetUserListResponse>()
+  userList.value = data.value != null ? data.value.userList : []
+}
+
+onMounted(async () => {
+  await getUserList()
+})
+
+interface GetUserListResponse {
+  userList: UserDto[]
+}
+</script>
 
 <style scoped>
 .mb-1 {
