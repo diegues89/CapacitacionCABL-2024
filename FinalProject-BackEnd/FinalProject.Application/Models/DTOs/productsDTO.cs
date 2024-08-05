@@ -11,9 +11,7 @@ namespace FinalProject.Application.Models.DTOs
         public int idProduct { get; set; }
         public string descriptionProduct { get; set; } = null!;
         public int stockQuantity { get; set; }
-        //public int idCategory { get; set; }
-        public string Category { get; set; }
-        //public int idSupplier { get; set; }
-        public string supplierName { get; set; }
+        public string? Category { get; set; }        
+        public string? supplierName { get; set; }
     }
 }

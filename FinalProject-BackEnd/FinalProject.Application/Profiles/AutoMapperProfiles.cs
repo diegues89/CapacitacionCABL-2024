@@ -11,10 +11,13 @@ namespace FinalProject.Application.Profiles
     {
         public AutoMapperProfiles()
         {
-            CreateMap<Users, UsersDTO>().ReverseMap();
-            CreateMap<products, productsDTO>().ReverseMap();
-            //.ForMember(x => x.Category, opt => opt.MapFrom(x => x.productCategory.descriptionCategory));
-            CreateMap<Suppliers, SuppliersDTO>().ReverseMap();
+            CreateMap<Users, UsersDTO>()
+                .ForMember(x => x.RoleName, opt => opt.MapFrom(x => x.rol.descripcionRol));
+            CreateMap<products, productsDTO>()
+                .ForMember(x => x.Category, opt => opt.MapFrom(x => x.category.descriptionCategory))
+                .ForMember(x => x.supplierName, opt => opt.MapFrom(x => x.suppliers.name));
+            CreateMap<Suppliers, SuppliersDTO>();
+            CreateMap<productCategory, productCategoryDTO>();
         }
     }
 }

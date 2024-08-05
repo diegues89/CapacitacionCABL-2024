@@ -23,31 +23,50 @@ namespace FinalProject.Infraestructure.Database
             modelBuilder.Entity<Users>(entity =>
             {
 
-                entity.ToTable("Users", "dbo");
+                entity.ToTable("Users", "dbo")
+                .HasKey(x => x.id);
+                
 
             });
             modelBuilder.Entity<rol>(entity =>
             {
 
-                entity.ToTable("rol", "dbo");
+                entity.ToTable("rol", "dbo")
+                .HasKey(x => x.rolId);
 
             });
             modelBuilder.Entity<products>(entity =>
             {
 
-                entity.ToTable("products", "dbo");
+                entity.ToTable("products", "dbo")
+
+                .HasKey(x => x.idProduct);
+
+                entity.HasOne(c => c.category)
+                .WithMany()
+                .HasForeignKey(c => c.idCategory);
+
+                entity.HasOne(s => s.suppliers)
+                .WithMany()
+                .HasForeignKey(s => s.idSupplier);
+
 
             });
             modelBuilder.Entity<Suppliers>(entity =>
             {
 
-                entity.ToTable("Suppliers", "dbo");
+                entity.ToTable("Suppliers", "dbo")
+                .HasKey(x => x.idSupplier);
+
 
             });
             modelBuilder.Entity<productCategory>(entity =>
             {
 
-                entity.ToTable("productCategory", "dbo");
+                entity.ToTable("productCategory", "dbo")
+                .HasKey(x => x.idCategory);
+                
+
 
             });
         }

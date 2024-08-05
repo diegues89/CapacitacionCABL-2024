@@ -9,7 +9,7 @@ namespace FinalProject.Application.Models.DTOs
 {
     public class SuppliersDTO
     {
-        [Key]
+        
         public int idSupplier { get; set; }
         public string name { get; set; } 
         public int CUIT { get; set; }

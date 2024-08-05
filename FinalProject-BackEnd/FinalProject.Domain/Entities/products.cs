@@ -10,17 +10,16 @@ namespace FinalProject.Domain.Entities
 {
     public class products
     {
-        [Key]
+        
         public int idProduct { get; set; }
         public string descriptionProduct { get; set; } = null!;
         public int stockQuantity { get; set; }
         public int idCategory { get; set; }
-        public string Category { get; set; }
-        public int idSupplier { get; set; }
-        public string supplierName { get; set; }
+        public productCategory category { get; set; } = null!;
+        public int idSupplier { get; set; } 
+        public Suppliers suppliers { get; set; } = null!;
 
-    //[ForeignKey("idCategory")]
-    //public productCategory productCategory { get; set; }
+        
 
-}
+    }
 }

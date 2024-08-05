@@ -7,5 +7,7 @@
         public string lastName { get; set; }
         public int CUIT { get; set; }
         public int rolId { get; set; }
+
+        public rol rol { get; set; } = null!;
     }
 }

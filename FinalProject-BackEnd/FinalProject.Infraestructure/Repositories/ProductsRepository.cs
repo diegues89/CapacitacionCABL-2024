@@ -4,6 +4,8 @@ using FinalProject.Infraestructure.Database;
 using Microsoft.EntityFrameworkCore;
 
 
+
+
 namespace FinalProject.Infrastructure.Repositories
 {
     public class ProductsRepository: IProductsRepository
@@ -18,21 +20,12 @@ namespace FinalProject.Infrastructure.Repositories
         {
             try
             {
-               // return await _dBContextFinalProject.products.ToListAsync();
-               List<products> productsResponse = await (from p in _dBContextFinalProject.products
-                                                join pc in _dBContextFinalProject.productCategory on p.idCategory equals pc.idCategory
-                                                join s in _dBContextFinalProject.Suppliers on p.idSupplier equals s.idSupplier
-                                                select new products
-                                                {
-                                                    idProduct = p.idProduct,
-                                                    descriptionProduct = p.descriptionProduct,
-                                                    stockQuantity = p.stockQuantity,
-                                                    idCategory = p.idCategory,
-                                                    Category = pc.descriptionCategory,
-                                                    idSupplier = p.idSupplier,
-                                                    supplierName = s.name,
-                                                }).ToListAsync();
-                return productsResponse;
+                
+                return await _dBContextFinalProject
+             .Set<products>()
+             .Include(x => x.category)
+             .Include(y => y.suppliers)
+             .ToListAsync();
             }
             catch (Exception ex)
             {

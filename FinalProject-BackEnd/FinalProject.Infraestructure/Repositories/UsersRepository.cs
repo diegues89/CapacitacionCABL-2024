@@ -16,15 +16,19 @@ namespace FinalProject.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Users>> GetAll()
         {
-            try
-            {
-                return await _dBContextFinalProject.Users.ToListAsync();
-            }
-            catch (Exception ex)
-            {
+            //try
+            //{
+            //    return await _dBContextFinalProject.Users.ToListAsync();
+            //}
+            //catch (Exception ex)
+            //{
 
-                throw ex;
-            }
+            //    throw ex;
+            //}
+            return await _dBContextFinalProject
+            .Set<Users>()
+            .Include(x => x.rol)
+            .ToListAsync();
         }
         public async Task<Users?> Get(int userId)
         {

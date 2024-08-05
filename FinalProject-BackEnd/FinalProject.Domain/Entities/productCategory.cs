@@ -9,7 +9,7 @@ namespace FinalProject.Domain.Entities
 {
     public class productCategory
     {
-        [Key]
+        
         public int idCategory { get; set; }
         public string descriptionCategory { get; set; } = null!;
 

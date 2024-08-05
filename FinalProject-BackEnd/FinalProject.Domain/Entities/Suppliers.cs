@@ -9,7 +9,7 @@ namespace FinalProject.Domain.Entities
 {
     public class Suppliers
     {
-        [Key]
+        
         public int idSupplier { get; set; }
         public string name { get; set; }
         public int CUIT { get; set; }
