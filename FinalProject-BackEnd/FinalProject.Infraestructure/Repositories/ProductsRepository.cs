@@ -18,25 +18,21 @@ namespace FinalProject.Infrastructure.Repositories
         }
         public async Task<IEnumerable<products>> GetAll()
         {
-            try
-            {
-                
-                return await _dBContextFinalProject
+           
+            return await _dBContextFinalProject
              .Set<products>()
              .Include(x => x.category)
              .Include(y => y.suppliers)
              .ToListAsync();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            
+            
         }
         public async Task<products?> Get(int idProduct)
         {
             return await _dBContextFinalProject
-                .Set<products>() 
+                .Set<products>()
+                .Include(x => x.category)
+                .Include(y => y.suppliers)
                 .Where(products => products.idProduct == idProduct)
                 .FirstOrDefaultAsync();
         }

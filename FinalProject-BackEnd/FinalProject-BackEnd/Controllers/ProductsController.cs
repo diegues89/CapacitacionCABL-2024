@@ -4,7 +4,9 @@ using FinalProject.Application.Commands.DeleteProduct;
 using FinalProject.Application.Commands.DeleteUser;
 using FinalProject.Application.Commands.UpdateProduct;
 using FinalProject.Application.Commands.UpdateUser;
+using FinalProject.Application.Queries.GetProduct;
 using FinalProject.Application.Queries.GetProductsList;
+using FinalProject.Application.Queries.GetUser;
 using FinalProject.Application.Queries.GetUsersList;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -23,9 +25,16 @@ namespace FinalProject_BackEnd.Controllers
             _mediator = mediator;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetList()
         {
             var response = await _mediator.Send(new GetProductsListQuery());
+            return Ok(response);
+        }
+        [HttpGet]
+        [Route("{idProduct:int}")]
+        public async Task<IActionResult> Get([FromRoute] int idProduct)
+        {
+            var response = await _mediator.Send(new GetProductQuery { idProduct = idProduct });
             return Ok(response);
         }
         [HttpPost]

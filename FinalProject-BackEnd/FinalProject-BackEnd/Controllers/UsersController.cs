@@ -6,6 +6,7 @@ using FinalProject.Application.Queries.GetUsersList;
 using FinalProject.Application.Commands.CreateUser;
 using FinalProject.Application.Commands.UpdateUser;
 using FinalProject.Application.Commands.DeleteUser;
+using FinalProject.Application.Queries.GetUser;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,10 +23,18 @@ namespace FinalProject_BackEnd.Controllers
             _mediator = mediator;
         }
         // GET: api/<UsersController>
+
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetList()
         {
             var response = await _mediator.Send(new GetUsersListQuery());
+            return Ok(response);
+        }
+        [HttpGet]
+        [Route("{Id:int}")]
+        public async Task<IActionResult> Get([FromRoute] int Id)
+        {
+            var response = await _mediator.Send(new GetUserQuery { id = Id });
             return Ok(response);
         }
 

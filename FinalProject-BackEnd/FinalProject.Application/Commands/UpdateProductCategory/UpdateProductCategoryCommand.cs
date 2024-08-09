@@ -1,17 +1,15 @@
-﻿using System;
+﻿using MediatR;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalProject.Domain.Entities
+namespace FinalProject.Application.Commands.UpdateProductCategory
 {
-    public class productCategory
+    public class UpdateProductCategoryCommand: IRequest
     {
-        
         public int idCategory { get; set; }
         public string descriptionCategory { get; set; } = null!;
-
     }
 }

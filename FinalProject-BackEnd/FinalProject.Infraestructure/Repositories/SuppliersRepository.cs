@@ -21,16 +21,32 @@ namespace FinalProject.Infrastructure.Repositories
 
         public async Task<IEnumerable<Suppliers>> GetAll()
         {
-            try
-            {
-               var response = await _dBContextFinalProject.Suppliers.ToListAsync();
-                return response;
-            }
-            catch (Exception ex)
-            {
+            return await _dBContextFinalProject
+            .Set<Suppliers>()
+            .ToListAsync();
+        }
 
-                throw ex;
-            }
+        public async Task<Suppliers?> Get(int idSupplier)
+        {
+            return await _dBContextFinalProject
+                .Set<Suppliers>()
+                .Where(suppliers => suppliers.idSupplier == idSupplier)
+                .FirstOrDefaultAsync();
+        }
+        public async Task Create(Suppliers suppliers)
+        {
+            _dBContextFinalProject.Add(suppliers);
+            await _dBContextFinalProject.SaveChangesAsync();
+        }
+        public async Task Update(Suppliers suppliers)
+        {
+            _dBContextFinalProject.Update(suppliers);
+            await _dBContextFinalProject.SaveChangesAsync();
+        }
+        public async Task Delete(Suppliers suppliers)
+        {
+            _dBContextFinalProject.Remove(suppliers);
+            await _dBContextFinalProject.SaveChangesAsync();
         }
     }
 }
