@@ -26,7 +26,12 @@ namespace FinalProject.Application.Commands.CreateProduct
                 idCategory = request.idCategory,
                 idSupplier = request.idSupplier,
             };
-            await _productsRepository.Create(newproduct);
+            var idProduct = await _productsRepository.Create(newproduct);
+
+            if (idProduct == -1)
+            {
+                throw new Exception("No se pudo crear el producto");
+            }
         }
     }
 }

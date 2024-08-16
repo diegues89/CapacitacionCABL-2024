@@ -16,15 +16,7 @@ namespace FinalProject.Infrastructure.Repositories
         }
         public async Task<IEnumerable<Users>> GetAll()
         {
-            //try
-            //{
-            //    return await _dBContextFinalProject.Users.ToListAsync();
-            //}
-            //catch (Exception ex)
-            //{
-
-            //    throw ex;
-            //}
+           
             return await _dBContextFinalProject
             .Set<Users>()
             .Include(x => x.rol)
@@ -34,13 +26,24 @@ namespace FinalProject.Infrastructure.Repositories
         {
             return await _dBContextFinalProject
                 .Set<Users>()
+                .Include(x => x.rol)
                 .Where(user => user.id == userId)
                 .FirstOrDefaultAsync();
         }
-        public async Task Create(Users user)
+        public async Task<int> Create(Users user)
         {
-            _dBContextFinalProject.Add(user);
-            await _dBContextFinalProject.SaveChangesAsync();
+            try
+            {
+                _dBContextFinalProject.Add(user);
+                await _dBContextFinalProject.SaveChangesAsync();
+                return user.id;
+            }
+            catch (Exception)
+            {
+                return -1;
+               
+            }
+            
         }
         public async Task Update(Users user)
         {

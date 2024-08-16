@@ -21,7 +21,7 @@ namespace FinalProject.Application.Commands.DeleteProductCategory
             var productcategorydelete = await _productCategoryRepository.Get(request.idCategory);
 
             if (productcategorydelete is null)
-                return;
+                throw new Exception("No se encontro la categoria a eliminar");
 
             await _productCategoryRepository.Delete(productcategorydelete);
         }

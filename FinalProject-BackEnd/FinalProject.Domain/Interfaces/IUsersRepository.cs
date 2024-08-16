@@ -7,7 +7,7 @@ namespace FinalProject.Domain.Interfaces
     {
         Task<IEnumerable<Users>> GetAll();
         Task<Users?> Get(int userId);
-        Task Create(Users user);
+        Task<int> Create(Users user);
         Task Update(Users user);
         Task Delete(Users userdelete);
     }

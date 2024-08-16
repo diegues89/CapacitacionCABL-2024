@@ -36,10 +36,19 @@ namespace FinalProject.Infrastructure.Repositories
                 .Where(products => products.idProduct == idProduct)
                 .FirstOrDefaultAsync();
         }
-        public async Task Create(products products)
+        public async Task<int> Create(products products)
         {
-            _dBContextFinalProject.Add(products);
-            await _dBContextFinalProject.SaveChangesAsync();
+            try
+            {
+                _dBContextFinalProject.Add(products);
+                var idProduct = await _dBContextFinalProject.SaveChangesAsync();
+                return idProduct;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+            
         }
         public async Task Update(products products)
         {

@@ -21,7 +21,7 @@ namespace FinalProject.Application.Commands.UpdateProductCategory
             var productcategory = await _productCategoryRepository.Get(request.idCategory);
 
             if (productcategory is null)
-                return;
+                throw new Exception("No se encontro la categoria del producto");
 
             productcategory.descriptionCategory = request.descriptionCategory;
             

@@ -32,10 +32,19 @@ namespace FinalProject.Infrastructure.Repositories
               .Set<productCategory>()         
               .ToListAsync();
         }
-        public async Task Create(productCategory productCategory)
+        public async Task<int> Create(productCategory productCategory)
         {
-            _dBContextFinalProject.Add(productCategory);
-            await _dBContextFinalProject.SaveChangesAsync();
+            try
+            {
+                _dBContextFinalProject.Add(productCategory);
+                var idCategory = await _dBContextFinalProject.SaveChangesAsync();
+                return idCategory;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+            
         }
         public async Task Update(productCategory productCategory)
         {

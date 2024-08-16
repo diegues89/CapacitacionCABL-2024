@@ -33,10 +33,19 @@ namespace FinalProject.Infrastructure.Repositories
                 .Where(suppliers => suppliers.idSupplier == idSupplier)
                 .FirstOrDefaultAsync();
         }
-        public async Task Create(Suppliers suppliers)
+        public async Task<int> Create(Suppliers suppliers)
         {
-            _dBContextFinalProject.Add(suppliers);
-            await _dBContextFinalProject.SaveChangesAsync();
+            try
+            {
+                _dBContextFinalProject.Add(suppliers);
+                var supplierID = await _dBContextFinalProject.SaveChangesAsync();
+                return supplierID;
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+            
         }
         public async Task Update(Suppliers suppliers)
         {

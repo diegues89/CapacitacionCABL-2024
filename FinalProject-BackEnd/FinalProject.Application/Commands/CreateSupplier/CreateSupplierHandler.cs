@@ -26,7 +26,12 @@ namespace FinalProject.Application.Commands.CreateSupplier
                 address = request.address,
                 phoneNumber = request.phoneNumber
             };
-            await _suppliersRepository.Create(newsupplier);
+            var supplierID = await _suppliersRepository.Create(newsupplier);
+
+            if (supplierID == -1)
+            {
+                throw new Exception("No se pudo crear el proveedor");
+            }
         }
     }
 }

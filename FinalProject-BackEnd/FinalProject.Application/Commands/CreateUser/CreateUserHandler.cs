@@ -25,8 +25,8 @@ namespace FinalProject.Application.Commands.CreateUser
         {
             var resultado = _validator.Validate(request);
 
-            if (resultado.Errors.Count != 0)
-                throw new Exception(resultado.Errors.First().ErrorMessage);
+            //if (resultado.Errors.Count != 0)
+            //    throw new Exception(resultado.Errors.First().ErrorMessage);
 
             var newuser = new Users { 
                 firstName = request.firstName, 
@@ -34,7 +34,12 @@ namespace FinalProject.Application.Commands.CreateUser
                 CUIT = request.CUIT ?? 999999999,
                 rolId = request.rolId ?? 1,
             };
-             await _usersRepository.Create(newuser);
+             var userID = await _usersRepository.Create(newuser);
+
+            if (userID == -1)
+            {
+                throw new Exception("No se pudo crear el usuario");
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using FinalProject.Domain.Interfaces;
+﻿using FinalProject.Domain.Entities;
+using FinalProject.Domain.Interfaces;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace FinalProject.Application.Commands.UpdateSupplier
             var supplier = await _suppliersRepository.Get(request.idSupplier);
 
             if (supplier is null)
-                return;
+                throw new Exception("No se encontro el proveedor");
             supplier.name = request.name;
             supplier.CUIT = request.CUIT;
             supplier.address = request.address;

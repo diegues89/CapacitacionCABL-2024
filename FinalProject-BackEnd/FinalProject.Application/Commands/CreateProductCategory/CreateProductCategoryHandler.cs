@@ -25,7 +25,11 @@ namespace FinalProject.Application.Commands.CreateProductCategory
                 descriptionCategory = request.descriptionCategory,
                 
             };
-            await _productCategoryRepository.Create(newproductcategory);
+            var idCategory = await _productCategoryRepository.Create(newproductcategory);
+            if (idCategory == -1)
+            {
+                throw new Exception("No se pudo crear la categoria");
+            }
         }
     }
 }

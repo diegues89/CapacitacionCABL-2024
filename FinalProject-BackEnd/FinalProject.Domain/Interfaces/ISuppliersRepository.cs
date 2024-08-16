@@ -11,7 +11,7 @@ namespace FinalProject.Domain.Interfaces
     {
         Task<IEnumerable<Suppliers>> GetAll();
         Task<Suppliers?> Get(int idSupplier);
-        Task Create(Suppliers suppliers);
+        Task<int> Create(Suppliers suppliers);
         Task Update(Suppliers suppliers);
         Task Delete(Suppliers suppliers);
     }

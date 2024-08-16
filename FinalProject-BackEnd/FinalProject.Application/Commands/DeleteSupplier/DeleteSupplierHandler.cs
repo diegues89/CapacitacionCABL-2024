@@ -17,7 +17,7 @@ namespace FinalProject.Application.Commands.DeleteSupplier
             var supplierdelete = await _suppliersRepository.Get(request.idSupplier);
 
             if (supplierdelete is null)
-                return;
+                throw new Exception("No se encontro el proveedor a eliminar");
 
             await _suppliersRepository.Delete(supplierdelete);
         }

@@ -22,7 +22,7 @@ namespace FinalProject.Application.Commands.DeleteProduct
             var productdelete = await _productsRepository.Get(request.idProduct);
 
             if (productdelete is null)
-                return;
+                throw new Exception("No se encontro el producto a eliminar");
 
             await _productsRepository.Delete(productdelete);
         }

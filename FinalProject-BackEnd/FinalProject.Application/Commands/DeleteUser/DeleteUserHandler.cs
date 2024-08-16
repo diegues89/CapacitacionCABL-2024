@@ -22,7 +22,7 @@ namespace FinalProject.Application.Commands.DeleteUser
             var userdelete = await _usersRepository.Get(request.id);
 
             if (userdelete is null)
-                return;
+                throw new Exception("No se encontro el usuario a eliminar");
 
             await _usersRepository.Delete(userdelete);
         }

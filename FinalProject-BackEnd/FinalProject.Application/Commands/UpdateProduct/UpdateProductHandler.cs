@@ -22,7 +22,7 @@ namespace FinalProject.Application.Commands.UpdateProduct
             var product = await _productsRepository.Get(request.idProduct);
 
             if (product is null)
-                return;
+                throw new Exception("No se encontro el producto");
 
             product.descriptionProduct = request.descriptionProduct;
             product.stockQuantity = request.stockQuantity;

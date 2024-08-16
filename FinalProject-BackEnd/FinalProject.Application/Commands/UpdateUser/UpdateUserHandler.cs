@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Application.Commands.UpdateUser
 {
-    internal class UpdateUserHandler : IRequestHandler<UpdateUserCommand>
+    public class UpdateUserHandler : IRequestHandler<UpdateUserCommand>
     {
         private readonly IUsersRepository _usersRepository;
 
@@ -21,7 +21,7 @@ namespace FinalProject.Application.Commands.UpdateUser
             var user = await _usersRepository.Get(request.id);
 
             if (user is null)
-                return;
+                throw new Exception("No se encontro el usuario");
 
             user.firstName = request.firstName;
             user.lastName = request.lastName;
