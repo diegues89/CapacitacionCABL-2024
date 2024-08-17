@@ -25,8 +25,8 @@ namespace FinalProject.Application.Commands.CreateUser
         {
             var resultado = _validator.Validate(request);
 
-            //if (resultado.Errors.Count != 0)
-            //    throw new Exception(resultado.Errors.First().ErrorMessage);
+            if (resultado != null)
+                throw new Exception(resultado.Errors.First().ErrorMessage);
 
             var newuser = new Users { 
                 firstName = request.firstName, 

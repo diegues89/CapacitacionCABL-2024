@@ -1,8 +1,10 @@
 ﻿using Bogus;
 using FinalProject.Application.Commands.CreateProduct;
 using FinalProject.Application.Commands.CreateProductCategory;
+using FinalProject.Application.Commands.CreateUser;
 using FinalProject.Domain.Entities;
 using FinalProject.Domain.Interfaces;
+using FluentValidation;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
@@ -20,7 +22,8 @@ namespace FinalProject_BackEnd.Tests
         public CreateProductHandlerTests()
         {
             _productsRepository = Substitute.For<IProductsRepository>();
-            _handler = new CreateProductHandler(_productsRepository);
+            var validator = Substitute.For<IValidator<CreateProductCommand>>();
+            _handler = new CreateProductHandler(_productsRepository, validator);
         }
         [Fact]
         public async Task CreateProductHandler_ReturnsNoError_WhenRequestIsValid()

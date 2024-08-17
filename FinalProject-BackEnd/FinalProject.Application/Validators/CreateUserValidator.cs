@@ -14,8 +14,12 @@ namespace FinalProject.Application.Validators
         {
             RuleFor(x => x.firstName)
                 .NotEmpty()
+                .WithMessage("El nombre no puede ser vacio.");
+            RuleFor(x => x.firstName)
+                
                 .MinimumLength(4)
                 .WithMessage("No puede tener una longitud menor a 4");
+            
         }
     }
 }
