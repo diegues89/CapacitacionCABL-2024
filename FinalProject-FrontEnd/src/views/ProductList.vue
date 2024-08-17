@@ -226,7 +226,7 @@ const createProduct = async (prod: CreateProduct) => {
   if (response.statusCode.value == 200) {
     showCreateOK()
   }
-  getProductList
+  await getProductList()
 }
 
 onMounted(async () => {

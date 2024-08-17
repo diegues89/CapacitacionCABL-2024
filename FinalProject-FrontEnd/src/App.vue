@@ -1,71 +1,47 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import NavView from './views/NavView.vue'
 </script>
 
 <template>
-  <RouterView />
+  <div>
+    <nav class="sticky-nav"><NavView /></nav>
+
+    <main class="main-content"><RouterView /></main>
+
+    <footer class="sticky-footer">
+      <h1>Este es el footer</h1>
+    </footer>
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Asegura que la altura sea al menos la del viewport */
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
+.main-content {
+  flex-grow: 1; /* Hace que el contenido principal ocupe todo el espacio disponible */
+  padding: 20px; /* Añade un espacio de relleno si lo deseas */
 }
-
-nav {
+.sticky-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  background-color: #ffffff; /* Cambia esto al color deseado */
+  z-index: 100; /* Asegura que el nav esté por encima de otros elementos */
+  /* Otros estilos según tus necesidades */
 }
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+.sticky-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f9f9f9; /* Cambia esto al color deseado */
+  z-index: 100; /* Asegura que el footer esté por encima de otros elementos */
+  /* Otros estilos según tus necesidades */
 }
 </style>
