@@ -10,7 +10,7 @@ import NavView from './views/NavView.vue'
     <main class="main-content"><RouterView /></main>
 
     <footer class="sticky-footer">
-      <h1>Este es el footer</h1>
+      <h1></h1>
     </footer>
   </div>
 </template>

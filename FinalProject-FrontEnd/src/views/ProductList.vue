@@ -192,7 +192,15 @@ const deleteSelectedProducts = async () => {
   }
   await getProductList()
 }
-
+const UpdateProduct = async (prod: CreateProduct) => {
+  let response = await useFetch('https://localhost:44376/api/Products').put(prod)
+  productDialog.value = false
+  console.log(response.statusCode.value)
+  if (response.statusCode.value == 200) {
+    showDeleteOK()
+  }
+  await getProductList()
+}
 const editProduct = (prod: Product) => {
   product.value = { ...prod }
   productDialog.value = true
